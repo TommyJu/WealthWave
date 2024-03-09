@@ -1,3 +1,4 @@
+// Event listener for adding a new budget
 document.addEventListener('DOMContentLoaded', function () {
     let form = document.getElementById('budgetForm');
 
@@ -11,6 +12,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
+
 function getUserID() {
     return new Promise((resolve, reject) => {
         firebase.auth().onAuthStateChanged(user => {
@@ -23,7 +25,7 @@ function getUserID() {
             }
         });
     });
-};
+}
 
 // ---------- Add cards using the Firestore database ----------
 function displayCardsDynamically(userID) {
