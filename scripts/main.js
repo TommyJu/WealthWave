@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 // Event listener for submitting a new category
+=======
+// Event listener for adding a new budget
+>>>>>>> 36be82c21473a9b31d60436076617a17b32b4a2f
 document.addEventListener('DOMContentLoaded', function () {
     let form = document.getElementById('budgetForm');
 
@@ -12,6 +16,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
+<<<<<<< HEAD
 // Event listener for editing an existing budget
 document.addEventListener('DOMContentLoaded', function () {
     let editForm = document.getElementById('editBudgetForm');
@@ -25,6 +30,8 @@ document.addEventListener('DOMContentLoaded', function () {
         editBudget(categoryID, budget);
     });
 });
+=======
+>>>>>>> 36be82c21473a9b31d60436076617a17b32b4a2f
 
 function getUserID() {
     return new Promise((resolve, reject) => {
@@ -38,7 +45,7 @@ function getUserID() {
             }
         });
     });
-};
+}
 
 // ---------- Add cards using the Firestore database ----------
 function displayCardsDynamically(userID) {

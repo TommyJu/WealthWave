@@ -1,59 +1,143 @@
+// Custom error class for representing invalid budget amounts
+class InvalidBudget extends Error {
+    // Constructor for creating an InvalidBudget error instance with a custom error message
+    constructor(message) {
+        super(message);
+        this.name = this.constructor.name;
+        this.message = message;
+        // Capture the stack trace for better error tracing
+        if (Error.captureStackTrace) {
+            Error.captureStackTrace(this, this.constructor);
+        }
+    }
+}
+
 // Function to add a budget to the database
 async function addBudget(category, budget) {
-    // This authentication state listener should be registered once, not on every form submit.
+    // Check if a user is authenticated
     const user = firebase.auth().currentUser;
     if (user) {
-        // current Category is a local variable
-        let userID = user.uid;
-        let budgetsCollection = db.collection("users/" + userID + "/budgets");
+        try {
+            const userID = user.uid;
+            const budgetsCollection = db.collection("users/" + userID + "/budgets");
 
-        let categoryData = {
-            date: new Date().toLocaleDateString(),
-            category: category,
-            budget: budget
-        };
+            // Ensure the budget amount is not negative
+            if (budget < 0) {
+                // Throw an error if the budget is negative
+                throw new Error("Budget cannot be below 0.");
+            }
 
-        await budgetsCollection.add(categoryData);
-        console.log("Budget category added successfully");
+            // Checking if the budget category already exists in the database
+            const existingBudgetQuery = await budgetsCollection.where("category", "==", category).get();
+            if (!existingBudgetQuery.empty) {
+                // If the budget category already exists, update the budget amount
+                const existingBudgetDoc = existingBudgetQuery.docs[0];
+                console.log("Budget already exists! Updating budget to given amount.");
+                await editBudget(existingBudgetDoc.id, budget); // Accessing document ID with existingBudgetDoc.id
+                return;
+            }
+
+            // If budget category doesn't exist, add a new budget entry
+            const categoryData = {
+                date: new Date().toLocaleDateString(),
+                category: category,
+                budget: parseInt(budget),
+                expenses: 0
+            };
+
+            await budgetsCollection.add(categoryData);
+            console.log("Budget category added successfully");
+        } catch (error) {
+            // Log any errors that occur during the process of adding the budget
+            console.error("Error adding budget:", error);
+        }
     } else {
-        console.error('User not signed in.');
-        // Here you could, for example, display an error message or redirect to the login page.
+        // If no user is signed in, log an error message
+        console.log('User not signed in.');
     }
 }
 
 // Function to edit the budget amount in the database
 async function editBudget(budgetId, newBudget) {
+    // Check if a user is authenticated
     const user = firebase.auth().currentUser;
     if (user) {
         try {
             const userID = user.uid;
             const budgetRef = db.collection("users/" + userID + "/budgets").doc(budgetId);
 
-            await budgetRef.update({ budget: newBudget });
+            // Ensure the new budget amount is not negative
+            if (newBudget < 0) {
+                // Throw an error if the new budget amount is negative
+                throw new InvalidBudget("Budget cannot be below 0.");
+            }
+
+            // Update the budget amount with the new value
+            await budgetRef.update({ budget: parseInt(newBudget) });
             console.log("Budget amount updated successfully");
         } catch (error) {
+            // Log any errors that occur during the process of editing the budget
             console.error("Error updating budget:", error);
         }
     } else {
+        // If no user is signed in, log an error message
         console.error('User not signed in.');
     }
 }
 
 // Function to delete a budget from the database
 async function deleteBudget(budgetId) {
+    // Check if a user is authenticated
     const user = firebase.auth().currentUser;
     if (user) {
         try {
             const userID = user.uid;
             const budgetRef = db.collection("users/" + userID + "/budgets").doc(budgetId);
 
+            // Delete the budget document from the database
             await budgetRef.delete();
             console.log("Budget deleted successfully");
         } catch (error) {
+            // Log any errors that occur during the process of deleting the budget
             console.error("Error deleting budget:", error);
         }
     } else {
+        // If no user is signed in, log an error message
         console.error('User not signed in.');
-        // Handle the case where the user is not signed in
+    }
+}
+
+// Function to add an expense to a specified budget
+async function addExpense(budgetCategory, expense) {
+    // Check if a user is authenticated
+    const user = firebase.auth().currentUser;
+    if (user) {
+        try {
+            const userID = user.uid;
+            const budgetsCollection = db.collection("users/" + userID + "/budgets");
+
+            // Query the budget collection to find the budget with the specified category
+            const querySnapshot = await budgetsCollection.where("category", "==", budgetCategory).get();
+
+            if (!querySnapshot.empty) {
+                // If the specified budget category exists, update the expenses
+                const budgetDoc = querySnapshot.docs[0];
+                const currentExpenses = budgetDoc.data().expenses || 0;
+                const newExpenseTotal = currentExpenses + expense;
+
+                // Update the expenses for the budget with the new total
+                await budgetDoc.ref.update({ expenses: newExpenseTotal });
+                console.log("Expense added successfully");
+            } else {
+                // If no budget document is found with the specified category, log an error message
+                console.log("No document found with the specified category");
+            }
+        } catch (error) {
+            // Log any errors that occur during the process of adding the expense
+            console.error("Error adding expense:", error);
+        }
+    } else {
+        // If no user is signed in, log an error message
+        console.error('User not signed in.');
     }
 }
