@@ -1,3 +1,4 @@
+// Event listener for submitting a new category
 document.addEventListener('DOMContentLoaded', function () {
     let form = document.getElementById('budgetForm');
 
@@ -8,6 +9,20 @@ document.addEventListener('DOMContentLoaded', function () {
         let budget = document.getElementById('budget').value;
 
         addBudget(category, budget);
+    });
+});
+
+// Event listener for editing an existing budget
+document.addEventListener('DOMContentLoaded', function () {
+    let editForm = document.getElementById('editBudgetForm');
+
+    editForm.addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        // let category = document.getElementById('category').value;
+        let budget = document.getElementById('newBudget').value;
+        let categoryID = editForm.getAttribute('categoryID');
+        editBudget(categoryID, budget);
     });
 });
 
@@ -38,8 +53,10 @@ function displayCardsDynamically(userID) {
     budgetsCollection.orderBy("date").onSnapshot(snapshot => {
         snapshot.docChanges().forEach(change => {
             var doc = change.doc;
+            var docID = doc.id;
             var category = doc.data().category;
             var budget = doc.data().budget;
+            let editForm = document.getElementById('editBudgetForm');
 
             let cardTemplate = document.getElementById("card-template");
 
@@ -48,17 +65,22 @@ function displayCardsDynamically(userID) {
 
                 newcard.querySelector('.card-category').innerHTML = category;
                 newcard.querySelector('.card-budget').innerHTML = budget;
+                newcard.querySelector(".edit-budget").onclick = () => editForm.setAttribute('categoryID', docID);
+                // Set the attribute of the html card div to the docID
+                // Enables us to edit existing cards using this attribute
+                newcard.querySelector('.card').setAttribute('data-doc-id', docID);
 
                 document.getElementById("card-container").append(newcard);
             } 
-            // else if (change.type === "modified") {
-            //     const existingCard = document.querySelector(`.card[data-doc-id="${docID}"]`);
-            //     if (existingCard) {
-            //         if (image) {
-            //             existingCard.querySelector('.card-image').src = image;
-            //         }
-            //     }
-            // }
+            else if (change.type === "modified") {
+                const existingCard = document.querySelector(`.card[data-doc-id="${docID}"]`);
+                if (existingCard) {
+                    // if (image) {
+                    //     existingCard.querySelector('.card-image').src = image;
+                    // }
+                }
+                existingCard.querySelector('.card-budget').innerHTML = budget;
+            }
         });
     });
 }

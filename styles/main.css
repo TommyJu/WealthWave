@@ -27,10 +27,14 @@ a {
     color: black;
 }
 
-#modal {
+.modal {
     color: white;
 }
 
 .card {
     border: solid 4px black;
+}
+
+.edit-budget {
+    max-width: 80px;
 }
