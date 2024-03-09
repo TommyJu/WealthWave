@@ -24,7 +24,7 @@ function alterBar() {
 
 alterBar();
 
-// Store form details to database
+// Store form details to database upon submitting
 document.addEventListener('DOMContentLoaded', function () {
     var form = document.getElementById('budgetForm');
 
@@ -53,8 +53,64 @@ document.addEventListener('DOMContentLoaded', function () {
 
             } else {
                 console.error('User not signed in.');
-                // Here you could, for example, display an error message or redirect to the login page.
             }
         });
     });
+});
+
+function getUserID() {
+    return new Promise((resolve, reject) => {
+        firebase.auth().onAuthStateChanged(user => {
+            if (user) {
+                console.log("user id retrieved");
+                resolve(user.uid);
+            } else {
+                console.error('User not signed in.');
+                resolve(null); // Resolve with null if the user is not signed in
+            }
+        });
+    });
+};
+
+// ---------- Add cards using the Firestore database ----------
+function displayCardsDynamically(userID) {
+    
+    if (userID == null) {
+        console.error("Cannot display cards, userID is null");
+        return
+    }
+    
+    let budgetsCollection = db.collection("users/" + userID + "/budgets");
+
+    budgetsCollection.orderBy("date").onSnapshot(snapshot => {
+        snapshot.docChanges().forEach(change => {
+            var doc = change.doc;
+            var category = doc.data().category;
+            var budget = doc.data().budget;
+
+            let cardTemplate = document.getElementById("card-template");
+
+            if (change.type === "added") {
+                let newcard = cardTemplate.content.cloneNode(true);
+
+                newcard.querySelector('.card-category').innerHTML = category;
+                newcard.querySelector('.card-budget').innerHTML = budget;
+
+                document.getElementById("card-container").append(newcard);
+            } 
+            // else if (change.type === "modified") {
+            //     const existingCard = document.querySelector(`.card[data-doc-id="${docID}"]`);
+            //     if (existingCard) {
+            //         if (image) {
+            //             existingCard.querySelector('.card-image').src = image;
+            //         }
+            //     }
+            // }
+        });
+    });
+}
+document.addEventListener('DOMContentLoaded', async function () {
+    let userID = await getUserID();
+    console.log(userID);
+    displayCardsDynamically(userID);
 });

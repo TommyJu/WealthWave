@@ -30,3 +30,7 @@ a {
 #modal {
     color: white;
 }
+
+.card {
+    border: solid 4px black;
+}
