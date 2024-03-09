@@ -29,6 +29,8 @@
             aria-valuemin="0" aria-valuemax="100"></div>
     </div>
 
+    <canvas id="budget-pie" style="width:100%;max-width:700px"></canvas> 
+
     <!-- Modal for inputing budget category information -->
     <div class="modal fade" id="modal" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
         <div class="modal-dialog modal-fullscreen-sm-down">
@@ -70,12 +72,8 @@
     </div>
     <!-- Add a new budget category -->
     <button id="add-budget-category" class="btn btn-warning" type="button" data-bs-toggle="modal" data-bs-target="#modal">Add Budget Category</button>
-<<<<<<< HEAD
-    <script src="./scripts/main.js"></script> 
-    <script src="./scripts/budgetBar.js"></script> 
-=======
     <script src="./scripts/budgetHandler.js"></script>
     <script src="./scripts/main.js"></script>
->>>>>>> 5858c1262aaff126722430a62af230d9afc7f629
-</body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script> 
+    <script src="./scripts/budgetPie.js"></script></body>
 </html>
