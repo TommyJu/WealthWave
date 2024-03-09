@@ -1,0 +1,28 @@
+/* Minimal CSS Reset */
+:root {
+    --purple: #310a31;
+    --light-purple: #847996;
+    --blue: #88B7B5;
+    --green: #5C996D;
+    --cream: #F4ECD6;
+
+}
+
+html {
+    width: 100%;
+}
+
+body {
+    min-width: 100%;
+}
+
+body, h1, h2, h3, h4, h5, h6, p, ol, ul {
+    margin: 0;
+    padding: 0;
+    font-weight: normal;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
