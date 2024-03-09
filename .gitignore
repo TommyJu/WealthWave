@@ -1,5 +1,4 @@
 .DS_Store
 *.logs
-firebaseAPI.js
 node_modules/
 .vscode/
