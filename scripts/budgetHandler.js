@@ -47,6 +47,7 @@ async function addBudget(category, budget) {
 
             await budgetsCollection.add(categoryData);
             console.log("Budget category added successfully")
+            delayFunction();
         } catch (error) {
             // Log any errors that occur during the process of adding the budget
             console.error("Error adding budget:", error)
@@ -96,6 +97,7 @@ async function deleteBudget(budgetId) {
 
             // Delete the budget document from the database
             await budgetRef.delete();
+            delayFunction();
             generateFish();
             console.log("Budget deleted successfully")
         } catch (error) {
