@@ -53,7 +53,7 @@ function generateFish() {
                     var budget = doc.data().budget;
                     var expenses = doc.data().expenses;
                     let fish;
-                    if (budget - expenses < 0) { // Kill a fish when user exceeds a budget
+                    if (budget - expenses <= 0) { // Kill a fish when user exceeds a budget
                         fish = {svg: "assets/fish-bone-1-svgrepo-com.svg", direction: "left", speed: 1};
                     } else if (charCode > 100) {
                         fish = getFish(parseInt(charCode.toString().charAt(2)));

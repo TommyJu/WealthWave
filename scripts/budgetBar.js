@@ -12,7 +12,7 @@ async function alterBar() {
         }
         document.getElementById("budget-bar").className = category
         document.getElementById("budget-bar").style.width= `${ratio * 100}%`
-        document.getElementById("budget-bar").innerHTML = `${Math.round(ratio * 100)}% Left of Your Budget!`
+        document.getElementById("budget-bar").innerHTML = `${Math.round(ratio * 100)}% Left of Your Budget!` + " 30 days left to survive"
 
         return ratio
     } else {
