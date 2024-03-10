@@ -24,17 +24,22 @@
 </head>
 <body>
     <!-- Content here -->
-    <div class="progress">
-        <div class="progress-bar progress-bar-striped bg-success" id="budget-bar" role="progressbar" aria-valuenow="50"
-            aria-valuemin="0" aria-valuemax="100"></div>
+
+    <div id="total-budget">
+        <h2>Total Budget</h2>
+        <div class="progress">
+            <div class="progress-bar progress-bar-striped bg-success" id="budget-bar" role="progressbar" aria-valuenow="50"
+                aria-valuemin="0" aria-valuemax="100"></div>
+        </div>
     </div>
 
     <!-- Temp placeholder for fish tank -->
-    <div id="fish-tank">
-        <div id="fish-entrance"></div>
+    <div id="visuals">
+        <div id="fish-tank">
+            <div id="fish-entrance"></div>
+        </div>
+        <canvas id="budget-pie" style="width:100%;max-width:700px"></canvas>
     </div>
-
-    <canvas id="budget-pie" style="width:100%;max-width:700px"></canvas> 
 
     <!-- Modal for inputing budget category information -->
     <div class="modal fade" id="modal" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
@@ -92,11 +97,11 @@
     </div>
 
     <!-- Modal for adding an expense -->
-    <div class="modal fade" id="modal-expense" tabindex="-1" aria-labelledby="modalEditLabel" aria-hidden="true">
+    <div class="modal fade" id="modal-expense" tabindex="-1" aria-labelledby="modalExpenseLabel" aria-hidden="true">
         <div class="modal-dialog modal-fullscreen-sm-down">
             <div class="modal-content bg-dark">
                 <div class="modal-header bg-dark">
-                    <h1 class="modal-title fs-5 bg-dark" id="modalEditLabel">Add an expense</h1>
+                    <h1 class="modal-title fs-5 bg-dark" id="modalExpenseLabel">Add an expense</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <form id="addExpenseForm" enctype="multipart/form-data" categoryID="">

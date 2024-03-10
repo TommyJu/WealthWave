@@ -48,3 +48,12 @@ a {
 .fish {
     max-width: 10%;
 }
+
+#total-budget {
+    text-align: center;
+
+}
+
+#visuals {
+    display: flex;
+}
