@@ -59,10 +59,11 @@ function displayCardsDynamically(userID) {
             var docID = doc.id;
             var category = doc.data().category;
             var budget = doc.data().budget;
+            var expenses = doc.data().expenses;
             let editForm = document.getElementById('editBudgetForm');
 
             let cardTemplate = document.getElementById("card-template");
-
+            let progressBar = document.querySelector(`[progress-bar-doc-id=${docID}]`);
             if (change.type === "added") {
 
                 let newcard = cardTemplate.content.cloneNode(true);
@@ -70,31 +71,36 @@ function displayCardsDynamically(userID) {
                 // Set the attribute of the html card div to the docID
                 // Enables us to edit existing cards using this attribute
                 newcard.querySelector('.card').setAttribute('data-doc-id', docID);
+                newcard.querySelector('.progress-bar').setAttribute('progress-bar-doc-id', docID);
                 
                 newcard.querySelector('.card-category').innerHTML = category;
                 newcard.querySelector('.card-budget').innerHTML = budget;
+                newcard.querySelector('.card-expenses').innerHTML = expenses;
                 newcard.querySelector(".edit-budget").onclick = () => editForm.setAttribute('categoryID', docID);
                 newcard.querySelector(".delete-budget").onclick = async () => {
                     await deleteBudget(docID);
                     // Rebuild the chart
                     // buildChart();
                 };
-
+                // Add the card to container
                 document.getElementById("card-container").append(newcard);
+
+                // Update the progress bar for a budget category
+                let progressBar = document.querySelector(`[progress-bar-doc-id=${docID}]`);
+                alterCategoryProgressBar(progressBar, budget, expenses);
             } 
             else if (change.type === "modified") {
                 const existingCard = document.querySelector(`.card[data-doc-id="${docID}"]`);
-                if (existingCard) {
-                    // if (image) {
-                    //     existingCard.querySelector('.card-image').src = image;
-                    // }
-                }
                 existingCard.querySelector('.card-budget').innerHTML = budget;
-                // buildChart();
+                
+                let progressBar = document.querySelector(`[progress-bar-doc-id=${docID}]`);
+                alterCategoryProgressBar(progressBar, budget, expenses);
             }
             else if (change.type === "removed") {
                 let removedCard = document.querySelector(`.card[data-doc-id="${docID}"]`);
                 removedCard.style.display = "none";
+                let progressBar = document.querySelector(`[progress-bar-doc-id=${docID}]`);
+                progressBar.style.diplay = "none";
             }
         });
     });

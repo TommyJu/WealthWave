@@ -35,6 +35,6 @@ a {
     border: solid 4px black;
 }
 
-.edit-budget {
-    max-width: 80px;
+.card-add-expenses {
+    max-width: 200px;
 }
