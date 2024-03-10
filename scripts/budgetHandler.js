@@ -32,7 +32,7 @@ async function addBudget(category, budget) {
             if (!existingBudgetQuery.empty) {
                 // If the budget category already exists, update the budget amount
                 const existingBudgetDoc = existingBudgetQuery.docs[0]
-                console.log("Budget already exists! Updating budget to given amount.")
+                //console.log("Budget already exists! Updating budget to given amount.")
                 await editBudget(existingBudgetDoc.id, budget) // Accessing document ID with existingBudgetDoc.id
                 return;
             }
@@ -46,7 +46,7 @@ async function addBudget(category, budget) {
             };
 
             await budgetsCollection.add(categoryData);
-            console.log("Budget category added successfully")
+            //console.log("Budget category added successfully")
             delayFunction();
         } catch (error) {
             // Log any errors that occur during the process of adding the budget
@@ -54,7 +54,7 @@ async function addBudget(category, budget) {
         }
     } else {
         // If no user is signed in, log an error message
-        console.log('User not signed in.')
+        //console.log('User not signed in.')
     }
 }
 
@@ -75,7 +75,7 @@ async function editBudget(budgetId, newBudget) {
 
             // Update the budget amount with the new value
             await budgetRef.update({ budget: parseInt(newBudget) })
-            console.log("Budget amount updated successfully")
+            //console.log("Budget amount updated successfully")
         } catch (error) {
             // Log any errors that occur during the process of editing the budget
             console.error("Error updating budget:", error)
@@ -99,7 +99,7 @@ async function deleteBudget(budgetId) {
             await budgetRef.delete();
             delayFunction();
             generateFish();
-            console.log("Budget deleted successfully")
+            //console.log("Budget deleted successfully")
         } catch (error) {
             // Log any errors that occur during the process of deleting the budget
             console.error("Error deleting budget:", error)
@@ -130,10 +130,10 @@ async function addExpenseToTotal(budgetCategory, amount) {
 
                 // Update the expenses for the budget with the new total
                 await budgetDoc.ref.update({ expenses: newExpenseTotal })
-                console.log("Expense added successfully")
+                //console.log("Expense added successfully")
             } else {
                 // If no budget document is found with the specified category, log an error message
-                console.log("No document found with the specified category")
+                //console.log("No document found with the specified category")
             }
         } catch (error) {
             // Log any errors that occur during the process of adding the expense
@@ -197,7 +197,7 @@ async function getTotalBudget() {
             console.error("Error getting total budget:", error)
         }
     } else {
-        console.log('User not signed in.')
+        //console.log('User not signed in.')
     }
 }
 
@@ -230,6 +230,6 @@ async function getTotalExpenses() {
             console.error("Error getting total expenses:", error)
         }
     } else {
-        console.log('User not signed in.')
+        //console.log('User not signed in.')
     }
 }

@@ -16,7 +16,7 @@ async function alterBar() {
 
         return ratio
     } else {
-        console.log('User not signed in.')
+        //console.log('User not signed in.')
     }
 }
 
@@ -40,6 +40,6 @@ async function alterCategoryProgressBar(progressBar, budget, expenses) {
 
         return ratio
     } else {
-        console.log('User not signed in.')
+        //console.log('User not signed in.')
     }
 }

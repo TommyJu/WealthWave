@@ -50,7 +50,7 @@ function getUserID() {
     return new Promise((resolve, reject) => {
         firebase.auth().onAuthStateChanged(user => {
             if (user) {
-                console.log("user id retrieved");
+                //console.log("user id retrieved");
                 resolve(user.uid);
             } else {
                 console.error('User not signed in.');
@@ -109,7 +109,7 @@ function displayCardsDynamically(userID) {
                 alterCategoryProgressBar(progressBar, budget, expenses);
             } 
             else if (change.type === "modified") {
-                const existingCard = document.querySelector(`.card[data-doc-id="${docID}"]`);
+                const existingCard = document.querySelector(`.budget-card[data-doc-id="${docID}"]`);
                 existingCard.querySelector('.card-budget').innerHTML = budget;
                 existingCard.querySelector('.card-expenses').innerHTML = expenses;
                 
@@ -119,7 +119,7 @@ function displayCardsDynamically(userID) {
                 alterBar();
             }
             else if (change.type === "removed") {
-                let removedCard = document.querySelector(`.card[data-doc-id="${docID}"]`);
+                let removedCard = document.querySelector(`.budget-card[data-doc-id="${docID}"]`);
                 removedCard.style.display = "none";
                 let progressBar = document.querySelector(`[progress-bar-doc-id=${docID}]`);
                 progressBar.style.display = "none";
@@ -130,7 +130,7 @@ function displayCardsDynamically(userID) {
 }
 document.addEventListener('DOMContentLoaded', async function () {
     let userID = await getUserID();
-    console.log(userID);
+    //console.log(userID);
     displayCardsDynamically(userID);
     await alterBar()
     buildChart()

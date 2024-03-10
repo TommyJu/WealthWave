@@ -41,7 +41,7 @@ function cleanTank() {
 }
 
 function generateFish() {
-    console.log("generate called");
+    //console.log("generate called");
     cleanTank();
     firebase.auth().onAuthStateChanged(user => {
         if(user) {
@@ -60,7 +60,7 @@ function generateFish() {
                     } else {
                         fish = getFish(parseInt(charCode.toString().charAt(0)));
                     }
-                    console.log("Fish:", fish); // Log fish for debugging
+                    //console.log("Fish:", fish); // Log fish for debugging
                     document.getElementById("fish-entrance").insertAdjacentHTML("afterend",
                         '<marquee behavior="scroll" direction="' + fish.direction + '" scrollamount="' + fish.speed + '">'
                         + '<img class="fish" src="' + fish.svg + '">'
