@@ -48,10 +48,14 @@ function getRatio() {
   }
 }
 
+async function removeCategory(budgetCategory) {
+    categories = categories.filter(item => item !== budgetCategory);
+}
+
 function buildChart() {
   let categoryCount = categories.length;
   if (categoryCount > 7) {
-    for (var i = 0; i < (categoryCount - 7); i++) {
+    for (let i = 0; i < (categoryCount - 7); i++) {
       categoryColours.push(getRandomColor());
     }
   }
@@ -89,8 +93,6 @@ const delayFunction = async () => {
   await delay(600);
   buildChart();
 };
-
-// delayFunction();
 
 
 
