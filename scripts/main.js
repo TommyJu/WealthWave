@@ -87,7 +87,7 @@ function displayCardsDynamically(userID) {
                 
                 // Set the attribute of the html card div to the docID
                 // Enables us to edit existing cards using this attribute
-                newcard.querySelector('.card').setAttribute('data-doc-id', docID);
+                newcard.querySelector('.budget-card').setAttribute('data-doc-id', docID);
                 newcard.querySelector('.progress-bar').setAttribute('progress-bar-doc-id', docID);
                 
                 newcard.querySelector('.card-category').innerHTML = category;
