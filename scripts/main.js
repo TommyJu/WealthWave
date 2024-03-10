@@ -40,7 +40,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
         // let category = document.getElementById('category').value;
         let newExpense = document.getElementById('newExpense').value;
-        let newExpenseValue = addExpenseForm.getAttribute('categoryID');
+        let newExpenseValue = document.getElementById('newExpenseValue').value;
+        let categoryName = addExpenseForm.getAttribute('categoryName');
+        addExpenseToCollection(categoryName, newExpenseValue, newExpense);
     })
 })
 
@@ -98,7 +100,7 @@ function displayCardsDynamically(userID) {
                     removeCategory(category)
                     buildChart()
                 };
-                newcard.querySelector('.card-add-expenses').onclick = () => addExpenseForm.setAttribute('categoryID', docID);
+                newcard.querySelector('.card-add-expenses').onclick = () => addExpenseForm.setAttribute('categoryName', category);
                 // Add the card to container
                 document.getElementById("card-container").append(newcard);
 

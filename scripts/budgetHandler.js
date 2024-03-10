@@ -123,7 +123,7 @@ async function addExpenseToTotal(budgetCategory, amount) {
                 // If the specified budget category exists, update the expenses
                 const budgetDoc = querySnapshot.docs[0]
                 const currentExpenses = budgetDoc.data().amount || 0
-                const newExpenseTotal = currentExpenses + amount
+                const newExpenseTotal = parseInt(currentExpenses + amount)
 
                 // Update the expenses for the budget with the new total
                 await budgetDoc.ref.update({ expenses: newExpenseTotal })
