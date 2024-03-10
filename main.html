@@ -46,12 +46,12 @@
                 </div>
                 <form id="budgetForm" enctype="multipart/form-data">
                     <div class="modal-body bg-dark">
-                        <label for="category">Your Budget Category</label><br>
+                        <label for="category">Budget Category Title</label><br>
                         <input type="text" id="category" name="category" placeholder="ex: School Supplies" style="width: 100%;"
                             required>
                         <br><br>
 
-                        <label for="budget">Your budget</label><br>
+                        <label for="budget">Budget Value</label><br>
                         <input type="number" min="0" id="budget" name="budget" rows="10" cols="50"
                             placeholder="ex: 500" style="width: 100%;" required>
                         <br><br>
@@ -76,7 +76,7 @@
                 </div>
                 <form id="editBudgetForm" enctype="multipart/form-data" categoryID="">
                     <div class="modal-body bg-dark">
-                        <label for="category">Your New Budget</label><br>
+                        <label for="category">New Budget</label><br>
                         <input type="number" min="0" id="newBudget" name="newBudget" rows="10" cols="50"
                             placeholder="ex: 500" style="width: 100%;" required>
                         <br><br>
@@ -85,6 +85,34 @@
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                         <input class="submit-button btn btn-warning" data-bs-dismiss="modal" type="submit"
                             value="Edit">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for adding an expense -->
+    <div class="modal fade" id="modal-expense" tabindex="-1" aria-labelledby="modalEditLabel" aria-hidden="true">
+        <div class="modal-dialog modal-fullscreen-sm-down">
+            <div class="modal-content bg-dark">
+                <div class="modal-header bg-dark">
+                    <h1 class="modal-title fs-5 bg-dark" id="modalEditLabel">Add an expense</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form id="addExpenseForm" enctype="multipart/form-data" categoryID="">
+                    <div class="modal-body bg-dark">
+                        <label for="category">Expense Title</label><br>
+                        <input type="text" min="0" id="newExpense" name="newExpense" rows="10" cols="50"
+                            placeholder="ex: Supermarket" style="width: 100%;" required>
+                        <br><br>
+                        <label for="category">Expense Amount</label><br>
+                        <input type="number" min="0" id="newExpenseValue" name="newExpenseValue" rows="10" cols="50"
+                            placeholder="ex: 20" style="width: 100%;" required>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <input class="submit-button btn btn-warning" data-bs-dismiss="modal" type="submit"
+                            value="Add">
                     </div>
                 </form>
             </div>
@@ -101,7 +129,7 @@
                 <div class="card-budget"></div>
                 <p>Expenses:</p>
                 <div class="card-expenses"></div>
-                <button class="card-add-expenses btn btn-warning" type="button">Add Expense</button>
+                <button class="card-add-expenses btn btn-warning" type="button" data-bs-toggle="modal" data-bs-target="#modal-expense">Add Expense</button>
                 <div class="edit-budget" data-bs-toggle="modal" data-bs-target="#modal-edit">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
                 </div>
