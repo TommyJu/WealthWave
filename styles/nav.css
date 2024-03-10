@@ -1,0 +1,26 @@
+nav {
+    background-color: #c6e8e6;
+}
+
+.navbar-nav .nav-item .nav-link {
+    position: relative;
+    color: #000; /* Change as per your design */
+    text-decoration: none;
+}
+
+.navbar-nav .nav-item .nav-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    right: 50%;
+    background-color: #6ccbc7; /* Change as per your design */
+    transition: width 0.5s ease-in-out, width 0.5s ease-in-out; /* Adjusted for animation */
+    transform: translateX(50%);
+}
+
+.navbar-nav .nav-item .nav-link:hover::after {
+    width: 75%; /* Expand to 100% width on hover */
+    transform: translateX(50%); /* Keep underline centered */
+}
