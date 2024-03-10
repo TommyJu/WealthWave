@@ -42,16 +42,16 @@ function getUserID() {
 
 // ---------- Add cards using the Firestore database ----------
 function displayCardsDynamically(userID) {
-    
     if (userID == null) {
         console.error("Cannot display cards, userID is null");
         return
     }
+    delayFunction();
     
     let budgetsCollection = db.collection("users/" + userID + "/budgets");
-
     budgetsCollection.orderBy("date").onSnapshot(snapshot => {
         snapshot.docChanges().forEach(change => {
+
             var doc = change.doc;
             var docID = doc.id;
             var category = doc.data().category;
@@ -61,14 +61,21 @@ function displayCardsDynamically(userID) {
             let cardTemplate = document.getElementById("card-template");
 
             if (change.type === "added") {
-                let newcard = cardTemplate.content.cloneNode(true);
 
-                newcard.querySelector('.card-category').innerHTML = category;
-                newcard.querySelector('.card-budget').innerHTML = budget;
-                newcard.querySelector(".edit-budget").onclick = () => editForm.setAttribute('categoryID', docID);
+                let newcard = cardTemplate.content.cloneNode(true);
+                
                 // Set the attribute of the html card div to the docID
                 // Enables us to edit existing cards using this attribute
                 newcard.querySelector('.card').setAttribute('data-doc-id', docID);
+                
+                newcard.querySelector('.card-category').innerHTML = category;
+                newcard.querySelector('.card-budget').innerHTML = budget;
+                newcard.querySelector(".edit-budget").onclick = () => editForm.setAttribute('categoryID', docID);
+                newcard.querySelector(".delete-budget").onclick = async () => {
+                    await deleteBudget(docID);
+                    // Rebuild the chart
+                    // buildChart();
+                };
 
                 document.getElementById("card-container").append(newcard);
             } 
@@ -80,6 +87,11 @@ function displayCardsDynamically(userID) {
                     // }
                 }
                 existingCard.querySelector('.card-budget').innerHTML = budget;
+                // buildChart();
+            }
+            else if (change.type === "removed") {
+                let removedCard = document.querySelector(`.card[data-doc-id="${docID}"]`);
+                removedCard.style.display = "none";
             }
         });
     });

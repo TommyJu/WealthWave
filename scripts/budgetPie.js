@@ -17,9 +17,9 @@ let categoryColours = [
   "violet",
 ];
 
-let categories = [];
-let budgets = [];
-let sum = 0;
+var categories = [];
+var budgets = [];
+var sum = 0;
 
 function getBudgets() {
   firebase.auth().onAuthStateChanged(user => {
@@ -39,7 +39,7 @@ function getBudgets() {
   });
 }
 
-let ratios = [];
+var ratios = [];
 
 function getRatio() {
 
@@ -77,6 +77,12 @@ function buildChart() {
 const delay = ms => new Promise(res => setTimeout(res, ms));
 
 const delayFunction = async () => {
+  // clear lists
+  ratios = [];
+  categories = [];
+  budgets = [];
+  sum = 0;
+
   getBudgets();
   await delay(800);
   getRatio();
@@ -84,7 +90,7 @@ const delayFunction = async () => {
   buildChart();
 };
 
-delayFunction();
+// delayFunction();
 
 
 
