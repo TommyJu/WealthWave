@@ -111,15 +111,19 @@ function displayCardsDynamically(userID) {
             else if (change.type === "modified") {
                 const existingCard = document.querySelector(`.card[data-doc-id="${docID}"]`);
                 existingCard.querySelector('.card-budget').innerHTML = budget;
+                existingCard.querySelector('.card-expenses').innerHTML = expenses;
                 
                 let progressBar = document.querySelector(`[progress-bar-doc-id=${docID}]`);
                 alterCategoryProgressBar(progressBar, budget, expenses);
+
+                alterBar();
             }
             else if (change.type === "removed") {
                 let removedCard = document.querySelector(`.card[data-doc-id="${docID}"]`);
                 removedCard.style.display = "none";
                 let progressBar = document.querySelector(`[progress-bar-doc-id=${docID}]`);
-                progressBar.style.diplay = "none";
+                progressBar.style.display = "none";
+                alterBar();
             }
         });
     });
