@@ -91,8 +91,8 @@ function displayCardsDynamically(userID) {
                 newcard.querySelector('.progress-bar').setAttribute('progress-bar-doc-id', docID);
                 
                 newcard.querySelector('.card-category').innerHTML = category;
-                newcard.querySelector('.card-budget').innerHTML = budget;
-                newcard.querySelector('.card-expenses').innerHTML = expenses;
+                newcard.querySelector('.card-budget').innerHTML = "$" + budget;
+                newcard.querySelector('.card-expenses').innerHTML = "$" + expenses;
                 newcard.querySelector(".edit-budget").onclick = () => editForm.setAttribute('categoryID', docID);
                 newcard.querySelector(".delete-budget").onclick = async () => {
                     await deleteBudget(docID);

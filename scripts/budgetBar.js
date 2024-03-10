@@ -11,8 +11,8 @@ async function alterBar() {
             category = "progress-bar progress-bar-striped bg-warning"
         }
         document.getElementById("budget-bar").className = category
-        document.getElementById("budget-bar").innerHTML = `${Math.round(ratio * 100)}% Left of Your Budget!`
         document.getElementById("budget-bar").style.width= `${ratio * 100}%`
+        document.getElementById("budget-bar").innerHTML = `${Math.round(ratio * 100)}% Left of Your Budget!`
 
         return ratio
     } else {
@@ -35,7 +35,7 @@ async function alterCategoryProgressBar(progressBar, budget, expenses) {
             category = "progress-bar progress-bar-striped bg-warning"
         }
         progressBar.className = category
-        progressBar.innerHTML = `${Math.round(ratio * 100)}% Left of Your Budget!`
+        progressBar.innerHTML = `${Math.round(ratio * 100)}% Left of this Budget!`
         progressBar.style.width= `${ratio * 100}%`
 
         return ratio

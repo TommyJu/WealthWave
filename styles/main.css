@@ -1,11 +1,12 @@
 /* Minimal CSS Reset */
 :root {
     --purple: #310a31;
-    --light-purple: #847996;
+    --light-purple: #d9d0e8;
     --blue: #85bfbb;
     --green: #5C996D;
     --cream: #F4ECD6;
-
+    --light-green: #c3f3e5;
+    --black: #2C2D2FFF
 }
 
 html {
@@ -14,6 +15,7 @@ html {
 
 body {
     min-width: 100%;
+    background-color: var(--cream);
 }
 
 body, h1, h2, h3, h4, h5, h6, p, ol, ul {
@@ -24,25 +26,35 @@ body, h1, h2, h3, h4, h5, h6, p, ol, ul {
 
 a {
     text-decoration: none;
-    color: black;
+    color: var(--black)
 }
 
-.modal {
-    color: white;
+#card-container {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding-bottom: 5vh;
 }
 
-.budget-card {
-    border: solid 4px black;
+.budget-card, #card-template {
+    width: 80%;
+    margin-bottom: 3vh;
+    border: solid 4px #d5c392;
+    background-color: var(--cream);
+    padding: 3vh
 }
+
 
 .card-add-expenses {
     max-width: 200px;
 }
 
 #fish-tank {
-    background-color: aquamarine;
+    background-image: url("../assets/fish-tank-bg.jpg");
     width: 50%;
     min-height: 300px;
+    border: 4px solid var(--black)
 }
 
 .fish {
@@ -51,9 +63,48 @@ a {
 
 #total-budget {
     text-align: center;
-
+    padding-bottom: 5vh;
+    width: 100%
 }
 
 #visuals {
     display: flex;
+    padding-bottom: 5vh;
+}
+
+
+#container {
+    width: 90%;
+    padding: 5vh;
+    margin: 0 auto; /* Centers the container horizontally */
+    background-color: var(--light-green);
+    border: 4px solid #a5e8d5
+}
+
+.budget-card {
+    display: flex;
+    flex-direction: column;
+}
+
+.card-actions {
+    padding: 2vh;
+    display: flex;
+    justify-content: flex-end; /* Align items to the right */
+    gap: 10px; /* Adjust the gap between buttons */
+    margin-top: 10px; /* Add some margin to separate from other content */
+}
+
+#add-budget-category {
+    width: 100%;
+    text-align: center;
+}
+
+.card-category {
+    font-size: xx-large;
+    font-weight: bolder;
+}
+
+.minor-label {
+    font-size: large;
+    font-weight: bold;
 }

@@ -1,10 +1,13 @@
 nav {
     background-color: #c6e8e6;
+    padding: 10vh;
+    margin-bottom: 5vh;
+    border: solid #b1cecc;
 }
 
 .navbar-nav .nav-item .nav-link {
     position: relative;
-    color: #000; /* Change as per your design */
+    color: #222323;
     text-decoration: none;
 }
 
@@ -15,8 +18,8 @@ nav {
     height: 2px;
     bottom: 0;
     right: 50%;
-    background-color: #6ccbc7; /* Change as per your design */
-    transition: width 0.5s ease-in-out, width 0.5s ease-in-out; /* Adjusted for animation */
+    background-color: #b1cecc;
+    transition: width 0.5s ease-in-out, width 0.5s ease-in-out;
     transform: translateX(50%);
 }
 

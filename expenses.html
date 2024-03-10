@@ -2,6 +2,8 @@
 <head>
     <title>Expense Log</title>
 
+    <link rel="stylesheet" href="./styles/nav.css">
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
@@ -28,6 +30,7 @@
                 .then(data => {
                     document.getElementById('navbar').innerHTML = data;
                 });
+
         </script>
 
         <div class="dropdown show">
