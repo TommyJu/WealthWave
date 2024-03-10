@@ -3,6 +3,7 @@
     <title>Expense Log</title>
 
     <link rel="stylesheet" href="./styles/nav.css">
+    <link rel="stylesheet" href="./styles/expenses.css">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
@@ -33,32 +34,38 @@
 
         </script>
 
-        <div class="dropdown show">
-                <a class="btn btn-warning dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                    aria-haspopup="true" aria-expanded="false">
-                    <span id="selected">Date</span>
-                </a>
-                <button type="button" id="sort-dir-button" class="btn btn-secondary" value="down">
-                    <i class="bi bi-sort-down" id="sort-dir" ></i>
-                </button>
+        <div id="header">
+            <h1>History of Expenses</h1>
+        </div>
+
+        <div id="container">
+            <div class="dropdown show">
+            <a class="btn btn-warning dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+               aria-haspopup="true" aria-expanded="false">
+                <span id="selected">Date</span>
+            </a>
+            <button type="button" id="sort-dir-button" class="btn btn-secondary" value="down">
+                <i class="bi bi-sort-down" id="sort-dir" ></i>
+            </button>
 
             <div class="dropdown-menu" id="sort-dropdown" aria-labelledby="dropdownMenuButton">
                 <a class="dropdown-item active" href="#">Date</a>
-                <a class="dropdown-item" href="#" value="cat">Category</a>
+                <a class="dropdown-item" href="#" >Category</a>
                 <a class="dropdown-item" href="#">Vendor</a>
                 <a class="dropdown-item" href="#">Amount</a>
-              </div>
+            </div>
         </div>
-        
 
-        <table class="table table-dark" id="expenses-table">
-            <tr id="table-entrance">
-                <th>Date</th>
-                <th>Category</th>
-                <th>Vendor</th>
-                <th>Amount</th>
-            </tr>
-        </table>
-    </div>
+
+            <table class="table" id="expenses-table">
+                <tr id="table-entrance">
+                    <th>Date</th>
+                    <th>Category</th>
+                    <th>Vendor</th>
+                    <th>Amount</th>
+                </tr>
+            </table>
+        </div></div>
+
     <script src="./scripts/expenses.js"></script>
 </body>

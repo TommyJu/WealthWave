@@ -1,0 +1,45 @@
+:root {
+    --purple: #310a31;
+    --light-purple: #d9d0e8;
+    --blue: #85bfbb;
+    --green: #5C996D;
+    --cream: #F4ECD6;
+    --light-green: #c3f3e5;
+    --black: #2C2D2FFF
+}
+
+body {
+    color: var(--black)
+}
+
+#container {
+    width: 90%;
+    padding: 5vh;
+    margin: 0 auto; /* Centers the container horizontally */
+    background-color: var(--light-green);
+    border: 4px solid #a5e8d5;
+    min-height: 90%;
+}
+
+#header {
+    width: 90%;
+    padding: 2vh;
+    text-align: center;
+    margin: 0 auto 2vh;
+    background-color: var(--light-green);
+    border: 4px solid #a5e8d5;
+}
+
+table {
+    padding-top: 5vh;
+}
+
+thead {
+    background-color: #c9b683;
+    border: 2px solid #d5c392;
+}
+
+tbody, tr, th {
+    background-color: var(--cream);
+    border: 2px solid #d5c392;
+}
