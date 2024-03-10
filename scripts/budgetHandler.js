@@ -158,6 +158,7 @@ async function addExpenseToCollection(budgetCategory, amount, vendor) {
 
         await budgetsCollection.add(categoryData);
         await addExpenseToTotal(budgetCategory, amount);
+        generateFish();
     } else {
         // If no user is signed in, log an error message
         console.error('User not signed in.')

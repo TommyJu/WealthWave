@@ -52,8 +52,12 @@ function generateFish() {
                 snapshot.docChanges().forEach(change => {
                     var doc = change.doc;
                     let charCode = doc.id.charCodeAt(0);
+                    var budget = doc.data().budget;
+                    var expenses = doc.data().expenses;
                     let fish;
-                    if (charCode > 100) {
+                    if (budget - expenses == 0) {
+                        fish = {svg: "assets/fish-bone-1-svgrepo-com.svg", direction: "left", speed: 1};
+                    } else if (charCode > 100) {
                         fish = getFish(parseInt(charCode.toString().charAt(2)));
                     } else {
                         fish = getFish(parseInt(charCode.toString().charAt(0)));
