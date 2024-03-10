@@ -10,7 +10,7 @@ Your budgeting shouldn't be fishy - leave that to the fish.
 - 
 - 
 
-## Problem We're Solving
+## The Problem We're Solving
 
 Many students struggle with managing their finances effectively, leading to stress, anxiety, and overall financial hardships. Additionally, the link between financial wellness and overall health is often underestimated, resulting in negative impacts on students' physical and emotional wellbeing.
 
