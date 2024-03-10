@@ -19,6 +19,14 @@
 </head>
 <body>
     <div>
+        <div id="navbar"></div>
+        <script>
+            fetch('nav.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('navbar').innerHTML = data;
+                });
+        </script>
         <table class="table table-dark" id="expenses-table">
             <tr id="table-entrance">
                 <th>Date</th>
