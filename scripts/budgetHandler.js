@@ -96,6 +96,7 @@ async function deleteBudget(budgetId) {
 
             // Delete the budget document from the database
             await budgetRef.delete();
+            generateFish();
             console.log("Budget deleted successfully")
         } catch (error) {
             // Log any errors that occur during the process of deleting the budget

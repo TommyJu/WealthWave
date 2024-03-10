@@ -38,3 +38,13 @@ a {
 .card-add-expenses {
     max-width: 200px;
 }
+
+#fish-tank {
+    background-color: aquamarine;
+    width: 50%;
+    min-height: 300px;
+}
+
+.fish {
+    max-width: 10%;
+}
