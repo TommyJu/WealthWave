@@ -31,6 +31,19 @@ document.addEventListener('DOMContentLoaded', function () {
     })
 })
 
+// Event listener for adding an expense form
+document.addEventListener('DOMContentLoaded', function () {
+    let addExpenseForm = document.getElementById('addExpenseForm');
+
+    addExpenseForm.addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        // let category = document.getElementById('category').value;
+        let newExpense = document.getElementById('newExpense').value;
+        let newExpenseValue = addExpenseForm.getAttribute('categoryID');
+    })
+})
+
 function getUserID() {
     return new Promise((resolve, reject) => {
         firebase.auth().onAuthStateChanged(user => {
@@ -63,9 +76,9 @@ function displayCardsDynamically(userID) {
             var budget = doc.data().budget;
             var expenses = doc.data().expenses;
             let editForm = document.getElementById('editBudgetForm');
+            let addExpenseForm = document.getElementById('addExpenseForm');
 
             let cardTemplate = document.getElementById("card-template");
-            let progressBar = document.querySelector(`[progress-bar-doc-id=${docID}]`);
             if (change.type === "added") {
 
                 let newcard = cardTemplate.content.cloneNode(true);
@@ -85,6 +98,7 @@ function displayCardsDynamically(userID) {
                     removeCategory(category)
                     buildChart()
                 };
+                newcard.querySelector('.card-add-expenses').onclick = () => addExpenseForm.setAttribute('categoryID', docID);
                 // Add the card to container
                 document.getElementById("card-container").append(newcard);
 
