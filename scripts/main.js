@@ -135,3 +135,14 @@ document.addEventListener('DOMContentLoaded', async function () {
     await alterBar()
     buildChart()
 });
+
+function displayDaysLeft() {
+    let now = new Date();
+    let currDate = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+    let endDate = new Date(now.getFullYear(), now.getMonth() + 1, 1);
+    let diff = ((endDate.getTime() - currDate.getTime()) / (1000 * 3600 * 24));
+    let daysLeft = Math.round(diff);
+    document.getElementById("days-left").innerHTML = `${daysLeft} days left to survive!`;
+}
+
+displayDaysLeft();
