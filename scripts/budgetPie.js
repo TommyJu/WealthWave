@@ -78,6 +78,13 @@ function buildChart() {
   });
 }
 
+function cleanChart() {
+  categories = [];
+  budgets = [];
+  ratios = [];
+  sum = 0;
+}
+
 const delay = ms => new Promise(res => setTimeout(res, ms));
 
 const delayFunction = async () => {
@@ -86,7 +93,7 @@ const delayFunction = async () => {
   categories = [];
   budgets = [];
   sum = 0;
-
+  cleanChart();
   getBudgets();
   await delay(800);
   getRatio();
