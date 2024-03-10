@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         addBudget(category, budget)
         alterBar()
+        buildChart()
     });
 });
 
@@ -26,6 +27,7 @@ document.addEventListener('DOMContentLoaded', function () {
         let categoryID = editForm.getAttribute('categoryID');
         editBudget(categoryID, budget)
         alterBar()
+        buildChart()
     })
 })
 
@@ -79,8 +81,9 @@ function displayCardsDynamically(userID) {
                 newcard.querySelector(".edit-budget").onclick = () => editForm.setAttribute('categoryID', docID);
                 newcard.querySelector(".delete-budget").onclick = async () => {
                     await deleteBudget(docID);
-                    // Rebuild the chart
-                    // buildChart();
+                    alterBar()
+                    removeCategory(category)
+                    buildChart()
                 };
                 // Add the card to container
                 document.getElementById("card-container").append(newcard);
@@ -110,4 +113,5 @@ document.addEventListener('DOMContentLoaded', async function () {
     console.log(userID);
     displayCardsDynamically(userID);
     await alterBar()
+    buildChart()
 });
