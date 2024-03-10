@@ -108,7 +108,7 @@ async function deleteBudget(budgetId) {
 }
 
 // Function to add an expense to a specified budget
-async function addExpense(budgetCategory, expense) {
+async function addExpenseToTotal(budgetCategory, amount) {
     // Check if a user is authenticated
     const user = firebase.auth().currentUser
     if (user) {
@@ -122,8 +122,8 @@ async function addExpense(budgetCategory, expense) {
             if (!querySnapshot.empty) {
                 // If the specified budget category exists, update the expenses
                 const budgetDoc = querySnapshot.docs[0]
-                const currentExpenses = budgetDoc.data().expenses || 0
-                const newExpenseTotal = currentExpenses + expense
+                const currentExpenses = budgetDoc.data().amount || 0
+                const newExpenseTotal = currentExpenses + amount
 
                 // Update the expenses for the budget with the new total
                 await budgetDoc.ref.update({ expenses: newExpenseTotal })
@@ -142,6 +142,26 @@ async function addExpense(budgetCategory, expense) {
     }
 }
 
+async function addExpenseToCollection(budgetCategory, amount, vendor) {
+    const user = firebase.auth().currentUser
+    if (user) {
+        const userID = user.uid
+        const budgetsCollection = db.collection("users/" + userID + "/expenses")
+
+        const categoryData = {
+            date: new Date().toLocaleDateString(),
+            category: budgetCategory,
+            amount: parseInt(amount),
+            vendor: vendor
+        };
+
+        await budgetsCollection.add(categoryData);
+        await addExpenseToTotal(budgetCategory, amount);
+    } else {
+        // If no user is signed in, log an error message
+        console.error('User not signed in.')
+    }
+}
 
 
 // Function to get total budget
