@@ -1,16 +1,18 @@
-// Event listener for submitting a new category
+// Event listener for adding a new budget
 document.addEventListener('DOMContentLoaded', function () {
-    let form = document.getElementById('budgetForm');
+    let form = document.getElementById('budgetForm')
 
     form.addEventListener('submit', function (e) {
-        e.preventDefault();
+        e.preventDefault()
 
-        let category = document.getElementById('category').value;
-        let budget = document.getElementById('budget').value;
+        let category = document.getElementById('category').value
+        let budget = document.getElementById('budget').value
 
-        addBudget(category, budget);
+        addBudget(category, budget)
+        alterBar()
     });
 });
+
 
 // Event listener for editing an existing budget
 document.addEventListener('DOMContentLoaded', function () {
@@ -22,9 +24,10 @@ document.addEventListener('DOMContentLoaded', function () {
         // let category = document.getElementById('category').value;
         let budget = document.getElementById('newBudget').value;
         let categoryID = editForm.getAttribute('categoryID');
-        editBudget(categoryID, budget);
-    });
-});
+        editBudget(categoryID, budget)
+        alterBar()
+    })
+})
 
 function getUserID() {
     return new Promise((resolve, reject) => {
@@ -88,4 +91,5 @@ document.addEventListener('DOMContentLoaded', async function () {
     let userID = await getUserID();
     console.log(userID);
     displayCardsDynamically(userID);
+    await alterBar()
 });
