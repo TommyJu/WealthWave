@@ -7,7 +7,7 @@ Your budgeting shouldn't be fishy - leave that to the fish.
 
 ### Meet the Team
 - Hi! My name is Jaina and I’m a backend developer and designer for Wealth Wave. I love programming and swimming!
-- 
+- I'm Anthony and I worked with both frontend and backend, but I didn't do as much styling as the other two. I just want to sleep now.
 - 
 
 ## The Problem We're Solving
