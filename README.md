@@ -17,3 +17,9 @@ Many students struggle with managing their finances effectively, leading to stre
 ## Our Solution
 
 WealthWave offers a unique approach to personal finance management by integrating elements of gamification and visual feedback, making budgeting engaging and rewarding. Users can create customized budgets for different expense categories, such as groceries, entertainment, or transportation. Each budget is represented by a randomly generated fish in a virtual fish tank, symbolizing the health of their financial goals.
+
+## Languages + Frameworks Used:
+- HTML
+- CSS
+- JavaScript
+- Firestore Database
